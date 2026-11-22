@@ -6,12 +6,12 @@ Roadmap phases are delivery gates, not promises of dates. Each phase must have a
 - [x] Confirm product direction: UGC gaming platform, 2D and 3D.
 - [x] Select initial technology direction.
 - [x] Record architecture decisions.
-- [ ] Establish coding conventions and contribution workflow.
+- [x] Establish initial web coding conventions and agent guidance.
 
-**Exit condition:** repository architecture and technical decisions are documented and reviewed.
+**Exit condition:** repository architecture and technical decisions are documented and reviewed. Initial web coding guidance is in place.
 
 ## Stage 1 — Platform MVP
-- [ ] Build responsive web portal.
+- [x] Bootstrap responsive Next.js web portal shell.\n- [ ] Validate installation, lint, typecheck, and production build locally.\n- [ ] Build out production-ready responsive web portal.
 - [ ] Implement account registration, login, and player profiles.
 - [ ] Create game catalog, search, categories, and game detail pages.
 - [ ] Add a basic compatible-build launcher.
