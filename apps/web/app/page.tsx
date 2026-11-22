@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const experiences = [
   { number: "01", title: "Voxel Frontier", genre: "3D SANDBOX", description: "A persistent block-based world focused on exploration, building, and shared creation.", status: "PROTOTYPE PLANNED", accent: "voxel" },
   { number: "02", title: "Neon Drift", genre: "2D PLATFORMER", description: "A precision platforming experiment built to validate the NEXUS game integration flow.", status: "PROTOTYPE PLANNED", accent: "neon" },
@@ -12,10 +14,10 @@ export default function Home() {
   return (
     <main>
       <header className="page-shell flex h-20 items-center justify-between border-b border-white/10">
-        <a href="/" className="flex items-center gap-3" aria-label="PROJECT NEXUS home">
+        <Link href="/" className="flex items-center gap-3" aria-label="PROJECT NEXUS home">
           <span className="grid size-9 place-items-center rounded-xl bg-[var(--accent)] text-sm font-black text-[#0a1007]">N</span>
           <span className="text-sm font-bold tracking-[0.18em]">PROJECT NEXUS</span>
-        </a>
+        </Link>
         <nav className="hidden items-center gap-8 text-sm text-[var(--muted)] sm:flex" aria-label="Main navigation">
           <a className="transition hover:text-white" href="#discover">Discover</a>
           <a className="transition hover:text-white" href="#about">About</a>
