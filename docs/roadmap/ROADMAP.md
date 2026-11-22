@@ -25,7 +25,7 @@ Roadmap phases are delivery gates, not promises of dates. Each phase must have a
 - [ ] Implement secure account registration, login, logout, sessions, and player profiles.
 - [x] Create initial local game catalog, discovery filters, and static game detail pages.
 - [ ] Add a typed catalog data boundary that can switch from local mock data to the Platform API.
-- [ ] Add browser-local favorites and a My Library page (device-local only; no account simulation).
+- [x] Add browser-local favorites and a My Library page (device-local only; no account simulation).
 - [ ] Connect discovery and game detail pages to the Platform API after hosting resumes.
 - [ ] Add a basic compatible-build launcher after a real game build is available.
 - [ ] Add admin-only game listing controls.
