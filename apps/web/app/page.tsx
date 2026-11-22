@@ -1,16 +1,15 @@
 import Link from "next/link";
+import { gameCatalog } from "../lib/catalog";
 
-const experiences = [
-  { number: "01", title: "Voxel Frontier", genre: "3D SANDBOX", description: "A persistent block-based world focused on exploration, building, and shared creation.", status: "PROTOTYPE PLANNED", accent: "voxel" },
-  { number: "02", title: "Neon Drift", genre: "2D PLATFORMER", description: "A precision platforming experiment built to validate the NEXUS game integration flow.", status: "PROTOTYPE PLANNED", accent: "neon" },
-];
 const pillars = [
   { number: "01", title: "Discover", detail: "Find experiences across genres and dimensions." },
   { number: "02", title: "Play", detail: "Move between independent worlds with one platform identity." },
   { number: "03", title: "Create", detail: "Build, publish, and evolve games of your own." },
 ];
 
-export default function Home() {
+export default async function Home() {
+  const experiences = await gameCatalog.listGames();
+
   return (
     <main>
       <header className="page-shell flex h-20 items-center justify-between border-b border-white/10">
@@ -66,11 +65,11 @@ export default function Home() {
             <span className="muted text-xs tracking-[0.12em]">CONCEPT SHOWCASE / 001—002</span>
           </div>
           <div className="grid gap-4 md:grid-cols-2">
-            {experiences.map((game) => (
-              <article key={game.number} className="panel group p-6 transition hover:border-white/20 sm:p-8">
-                <div className={`mb-8 flex aspect-[16/7] items-center justify-center overflow-hidden rounded-xl border border-white/10 ${game.accent === "voxel" ? "bg-[linear-gradient(135deg,#263b35,#111a1c_65%)]" : "bg-[linear-gradient(135deg,#28264d,#151322_65%)]"}`}><span className="text-5xl font-black tracking-[-0.08em] text-white/15 transition duration-500 group-hover:scale-110 sm:text-7xl">{game.number}</span></div>
-                <div className="flex items-center justify-between gap-3"><span className="eyebrow">{game.genre}</span><span className="text-[0.6rem] tracking-[0.12em] text-[var(--muted)]">{game.status}</span></div>
-                <h3 className="mt-3 text-2xl font-semibold"><Link href={`/games/${game.title === "Voxel Frontier" ? "voxel-frontier" : "neon-drift"}`} className="transition hover:text-[var(--accent)]">{game.title}</Link></h3>
+            {experiences.map((game, index) => (
+              <article key={game.id} className="panel group p-6 transition hover:border-white/20 sm:p-8">
+                <div className={`mb-8 flex aspect-[16/7] items-center justify-center overflow-hidden rounded-xl border border-white/10 ${game.accent === "voxel" ? "bg-[linear-gradient(135deg,#263b35,#111a1c_65%)]" : "bg-[linear-gradient(135deg,#28264d,#151322_65%)]"}`}><span className="text-5xl font-black tracking-[-0.08em] text-white/15 transition duration-500 group-hover:scale-110 sm:text-7xl">{{String(index + 1).padStart(2, "0")}}</span></div>
+                <div className="flex items-center justify-between gap-3"><span className="eyebrow">{`${game.format} ${game.genre}`.toUpperCase()}</span><span className="text-[0.6rem] tracking-[0.12em] text-[var(--muted)]">{game.stage.toUpperCase()}</span></div>
+                <h3 className="mt-3 text-2xl font-semibold"><Link href={`/games/${game.id}`} className="transition hover:text-[var(--accent)]">{game.title}</Link></h3>
                 <p className="muted mt-3 max-w-lg text-sm leading-7">{game.description}</p>
               </article>
             ))}
