@@ -1,11 +1,10 @@
 import {
-  boolean,
   check,
   pgEnum,
   pgTable,
   text,
   timestamp,
-  uniqueIndex,
+  index,
   uuid,
   varchar,
 } from "drizzle-orm/pg-core";
@@ -83,6 +82,6 @@ export const games = pgTable(
   },
   (table) => [
     uniqueIndex("games_slug_unique").on(table.slug),
-    uniqueIndex("games_catalog_status_visibility_published_idx").on(table.status, table.visibility, table.publishedAt),
+    index("games_catalog_status_visibility_published_idx").on(table.status, table.visibility, table.publishedAt),
   ],
 );
