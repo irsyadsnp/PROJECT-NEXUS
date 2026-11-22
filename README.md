@@ -40,11 +40,31 @@ The structure is a target map; directories will become tracked as implementation
 
 ## Development status
 
-**Stage 0 — Foundation:** completed. Architecture, repository structure, roadmap, and ADR-001 through ADR-007 are documented.
+- **Foundation:** architecture, repository structure, roadmap, and ADRs are documented.
+- **Web portal:** responsive landing page, local game catalog, discovery filters, and static game detail routes are implemented.
+- **CI:** dependency installation, lint, typecheck, and production build are validated through GitHub Actions.
+- **Deployment:** GitHub Pages static-export workflow is configured. The first deployment must complete before the public site URL is considered verified.
 
-**Stage 1 — Web bootstrap:** initial Next.js App Router workspace and landing-page shell committed. Dependency installation and local validation are pending.
+No production authentication, database integration, creator publishing, or playable games are implemented yet. Current catalog entries are concepts, not released games.
 
-No production authentication, database integration, creator publishing, or playable games are implemented yet.
+## Local development
+
+Requirements: Node.js 24 and npm.
+
+```bash
+npm ci
+npm run dev
+```
+
+## Deployment
+
+The `Deploy Web to GitHub Pages` workflow builds a static Next.js export and publishes `apps/web/out` when changes are pushed to `main`.
+
+The expected project site URL is:
+
+`https://irsyadsnp.github.io/PROJECT-NEXUS/`
+
+This URL should be considered active only after the first deployment succeeds.
 
 ## Principles
 
