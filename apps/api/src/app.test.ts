@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { buildApp } from "./app.js";
+import { buildApp } from "./application.js";
 
 test("health endpoint returns service liveness", async () => {
   const app = buildApp();
