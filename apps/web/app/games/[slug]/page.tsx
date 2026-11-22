@@ -1,19 +1,20 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getGameBySlug, games } from "../../../lib/games";
+import { gameCatalog } from "../../../lib/catalog";
 import { FavoriteButton } from "../../../components/favorite-button";
 
 type GameDetailPageProps = {
   params: Promise<{ slug: string }>;
 };
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const games = await gameCatalog.listGames();
   return games.map((game) => ({ slug: game.id }));
 }
 
 export default async function GameDetailPage({ params }: GameDetailPageProps) {
   const { slug } = await params;
-  const game = getGameBySlug(slug);
+  const game = await gameCatalog.getGameById(slug);
 
   if (!game) notFound();
 
