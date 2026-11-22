@@ -2,42 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-
-type Game = {
-  id: string;
-  title: string;
-  genre: string;
-  format: "2D" | "3D";
-  description: string;
-  accent: "voxel" | "neon";
-  stage: string;
-  tags: string[];
-};
-
-const games: Game[] = [
-  {
-    id: "voxel-frontier",
-    title: "Voxel Frontier",
-    genre: "Sandbox",
-    format: "3D",
-    description:
-      "A persistent block-based world focused on exploration, building, and shared creation.",
-    accent: "voxel",
-    stage: "Prototype planned",
-    tags: ["Exploration", "Building", "Creative"],
-  },
-  {
-    id: "neon-drift",
-    title: "Neon Drift",
-    genre: "Platformer",
-    format: "2D",
-    description:
-      "A precision platforming experiment built to validate the NEXUS game integration flow.",
-    accent: "neon",
-    stage: "Prototype planned",
-    tags: ["Precision", "Arcade", "Action"],
-  },
-];
+import { games } from "../../lib/games";
 
 const genres = ["All genres", "Sandbox", "Platformer"] as const;
 const formats = ["All formats", "2D", "3D"] as const;
@@ -173,7 +138,7 @@ export default function DiscoverPage() {
                   <span className="eyebrow">{game.genre}</span>
                   <span className="muted text-[0.65rem] uppercase tracking-[0.1em]">{game.stage}</span>
                 </div>
-                <h2 className="mt-3 text-2xl font-semibold tracking-tight">{game.title}</h2>
+                <Link href={`/games/${game.id}`} className="mt-3 inline-block text-2xl font-semibold tracking-tight transition hover:text-[var(--accent)]">{game.title}</Link>
                 <p className="muted mt-3 min-h-14 text-sm leading-7">{game.description}</p>
                 <div className="mt-5 flex flex-wrap gap-2">
                   {game.tags.map((tag) => (
@@ -182,7 +147,7 @@ export default function DiscoverPage() {
                 </div>
                 <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-4">
                   <span className="text-[0.65rem] tracking-[0.12em] text-[var(--muted)]">NOT YET PLAYABLE</span>
-                  <span className="text-xs font-semibold text-white/40">IN DEVELOPMENT</span>
+                  <Link href={`/games/${game.id}`} className="text-xs font-semibold text-[var(--accent)] transition hover:text-white">VIEW DETAILS ↗</Link>
                 </div>
               </article>
             ))}
