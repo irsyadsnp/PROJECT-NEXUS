@@ -1,0 +1,42 @@
+name: Neon Drift Godot CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "games/neon-drift/**"
+      - ".github/workflows/neon-drift-ci.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "games/neon-drift/**"
+      - ".github/workflows/neon-drift-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: neon-drift-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-godot:
+    name: Parse and launch Neon Drift headlessly
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Godot 4
+        uses: firebelley/setup-godot@v1
+        with:
+          version: 4.4.1
+          include-templates: false
+
+      - name: Import project and validate scripts
+        run: godot --headless --editor --path games/neon-drift --quit
+
+      - name: Launch main scene headlessly
+        run: godot --headless --path games/neon-drift --quit-after 5
