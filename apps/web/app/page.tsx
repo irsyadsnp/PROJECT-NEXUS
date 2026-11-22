@@ -20,6 +20,7 @@ export default function Home() {
         </Link>
         <nav className="hidden items-center gap-8 text-sm text-[var(--muted)] sm:flex" aria-label="Main navigation">
           <Link className="transition hover:text-white" href="/discover">Discover</Link>
+          <Link className="transition hover:text-white" href="/library">My Library</Link>
           <a className="transition hover:text-white" href="#about">About</a>
           <a className="transition hover:text-white" href="https://github.com/irsyadsnp/PROJECT-NEXUS">GitHub ↗</a>
         </nav>
