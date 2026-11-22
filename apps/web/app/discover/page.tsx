@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { games } from "../../lib/games";
+import { FavoriteButton } from "../../components/favorite-button";
 
 const genres = ["All genres", "Sandbox", "Platformer"] as const;
 const formats = ["All formats", "2D", "3D"] as const;
@@ -47,6 +48,7 @@ export default function DiscoverPage() {
         </Link>
         <nav className="flex items-center gap-5 text-sm text-[var(--muted)] sm:gap-8" aria-label="Main navigation">
           <Link className="text-white" href="/discover" aria-current="page">Discover</Link>
+          <Link className="transition hover:text-white" href="/library">My Library</Link>
           <Link className="transition hover:text-white" href="/#about">About</Link>
           <a className="transition hover:text-white" href="https://github.com/irsyadsnp/PROJECT-NEXUS">GitHub ↗</a>
         </nav>
@@ -133,6 +135,7 @@ export default function DiscoverPage() {
                   <span className="relative text-7xl font-black tracking-[-0.08em] text-white/20 transition duration-500 group-hover:scale-110">{String(index + 1).padStart(2, "0")}</span>
                   <span className="absolute left-4 top-4 rounded-full border border-white/15 bg-black/30 px-3 py-1 text-[0.6rem] font-semibold tracking-[0.14em] text-white/80">{game.format} EXPERIENCE</span>
                   <span className="absolute bottom-4 right-4 rounded-full border border-[var(--accent)]/30 bg-black/40 px-3 py-1 text-[0.6rem] font-semibold tracking-[0.12em] text-[var(--accent)]">CONCEPT</span>
+                  <div className="absolute right-4 top-4"><FavoriteButton gameId={game.id} compact /></div>
                 </div>
                 <div className="flex flex-wrap items-center justify-between gap-3 pt-5">
                   <span className="eyebrow">{game.genre}</span>

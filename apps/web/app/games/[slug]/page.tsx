@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getGameBySlug, games } from "../../../lib/games";
+import { FavoriteButton } from "../../../components/favorite-button";
 
 type GameDetailPageProps = {
   params: Promise<{ slug: string }>;
@@ -27,6 +28,7 @@ export default async function GameDetailPage({ params }: GameDetailPageProps) {
         </Link>
         <nav className="flex items-center gap-5 text-sm text-[var(--muted)] sm:gap-8" aria-label="Main navigation">
           <Link className="text-white" href="/discover">Discover</Link>
+          <Link className="transition hover:text-white" href="/library">My Library</Link>
           <Link className="transition hover:text-white" href="/#about">About</Link>
           <a className="transition hover:text-white" href="https://github.com/irsyadsnp/PROJECT-NEXUS">GitHub ↗</a>
         </nav>
@@ -80,7 +82,8 @@ export default async function GameDetailPage({ params }: GameDetailPageProps) {
                 <dd className="mt-2 space-y-2">{game.supportedPlatforms.map((platform) => <div key={platform} className="rounded-lg border border-white/10 px-3 py-2 text-xs">{platform}</div>)}</dd>
               </div>
             </dl>
-            <button type="button" disabled={!isPlayable} className="mt-7 w-full cursor-not-allowed rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-white/35 disabled:opacity-100" title="This experience has no published build yet">
+            <div className="mt-7"><FavoriteButton gameId={game.id} /></div>
+            <button type="button" disabled={!isPlayable} className="mt-4 w-full cursor-not-allowed rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-white/35 disabled:opacity-100" title="This experience has no published build yet">
               {isPlayable ? "Play now" : "Not yet playable"}
             </button>
             <p className="muted mt-3 text-center text-[0.65rem] leading-5">{isPlayable ? "A compatible game build is available." : "The game has no published build. The Play action is disabled."}</p>
