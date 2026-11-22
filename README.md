@@ -42,11 +42,12 @@ The structure is a target map; directories will become tracked as implementation
 
 - **Foundation:** architecture, repository structure, roadmap, and ADRs are documented.
 - **Web portal:** responsive landing page, local game catalog, discovery filters, and static game detail routes are implemented.
-- **Backend design:** dedicated Fastify Platform API, PostgreSQL/Drizzle data layer, Zod validation, API versioning, security boundaries, and initial relational schema are documented in ADR-013, ADR-014, and the architecture guides. Backend implementation and database provisioning have not started.
+- **Frontend delivery strategy:** development is continuing frontend-first using clearly labeled local prototype data. Browser-local storage may support device-specific preferences only; it is not an account, database, or multiplayer backend. See [ADR-017](docs/adr/ADR-017-frontend-first-api-hosting-deferral.md).
+- **Backend foundation:** a Fastify/TypeScript API, Drizzle data layer, PostgreSQL schema, Neon database, and migration workflow are established. Health/readiness checks pass in GitHub Actions. API runtime hosting and production frontend integration are deferred; no public production API is currently available.
 - **CI:** dependency installation, lint, typecheck, and production build are validated through GitHub Actions.
-- **Deployment:** GitHub Pages static-export workflow is configured. The first deployment must complete before the public site URL is considered verified.
+- **Deployment:** GitHub Pages static-export workflow is configured. The public site URL should be considered active only after a successful deployment.
 
-No production authentication, API runtime, database integration, creator publishing, or playable games are implemented yet. Current catalog entries are concepts, not released games.
+No production authentication, connected catalog API, creator publishing, or playable first-party games are currently available. Current catalog entries are concepts, not released games.
 
 ## Local development
 
