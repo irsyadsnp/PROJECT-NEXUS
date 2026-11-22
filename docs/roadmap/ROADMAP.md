@@ -16,6 +16,8 @@ Roadmap phases are delivery gates, not promises of dates. Each phase must have a
 - [x] Validate lint, typecheck, and production build in GitHub Actions.
 - [x] Commit the generated npm lockfile and switch CI to deterministic installs.
 - [x] Build initial responsive portal navigation and interactive local Game Catalog / Discover page.
+- [x] Decide the Platform API architecture and module boundaries.
+- [x] Define the initial PostgreSQL relational model.
 - [ ] Create the dedicated Platform API foundation (Fastify, TypeScript, Drizzle, Zod).
 - [ ] Provision PostgreSQL and establish reviewed migration workflow.
 - [ ] Implement health and public catalog API endpoints.
