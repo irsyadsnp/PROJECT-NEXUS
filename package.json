@@ -12,7 +12,12 @@
     "build": "npm run build --workspace @nexus/web",
     "start": "npm run start --workspace @nexus/web",
     "lint": "npm run lint --workspace @nexus/web",
-    "typecheck": "npm run typecheck --workspace @nexus/web"
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "api:dev": "npm run dev --workspace @nexus/api",
+    "api:build": "npm run build --workspace @nexus/api",
+    "api:start": "npm run start --workspace @nexus/api",
+    "api:typecheck": "npm run typecheck --workspace @nexus/api",
+    "api:test": "npm run test --workspace @nexus/api"
   },
   "engines": {
     "node": ">=22.12.0",
