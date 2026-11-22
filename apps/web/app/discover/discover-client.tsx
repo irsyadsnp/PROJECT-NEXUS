@@ -28,7 +28,7 @@ export default function DiscoverClient({ games }: { games: readonly Game[] }) {
 
       return matchesQuery && matchesGenre && matchesFormat;
     });
-  }, [genre, format, query]);
+  }, [games, genre, format, query]);
 
   const hasActiveFilters =
     query.length > 0 || genre !== "All genres" || format !== "All formats";
