@@ -16,8 +16,12 @@ Roadmap phases are delivery gates, not promises of dates. Each phase must have a
 - [x] Validate lint, typecheck, and production build in GitHub Actions.
 - [x] Commit the generated npm lockfile and switch CI to deterministic installs.
 - [x] Build initial responsive portal navigation and interactive local Game Catalog / Discover page.
-- [ ] Implement account registration, login, and player profiles.
-- [ ] Create game catalog, search, categories, and game detail pages.
+- [ ] Create the dedicated Platform API foundation (Fastify, TypeScript, Drizzle, Zod).
+- [ ] Provision PostgreSQL and establish reviewed migration workflow.
+- [ ] Implement health and public catalog API endpoints.
+- [ ] Implement secure account registration, login, logout, sessions, and player profiles.
+- [x] Create initial local game catalog, discovery filters, and static game detail pages.
+- [ ] Connect discovery and game detail pages to the Platform API.
 - [ ] Add a basic compatible-build launcher.
 - [ ] Add admin-only game listing controls.
 
