@@ -19,7 +19,7 @@ export default function Home() {
           <span className="text-sm font-bold tracking-[0.18em]">PROJECT NEXUS</span>
         </Link>
         <nav className="hidden items-center gap-8 text-sm text-[var(--muted)] sm:flex" aria-label="Main navigation">
-          <a className="transition hover:text-white" href="#discover">Discover</a>
+          <Link className="transition hover:text-white" href="/discover">Discover</Link>
           <a className="transition hover:text-white" href="#about">About</a>
           <a className="transition hover:text-white" href="https://github.com/irsyadsnp/PROJECT-NEXUS">GitHub ↗</a>
         </nav>
@@ -32,7 +32,7 @@ export default function Home() {
           <h1 className="max-w-3xl text-5xl font-semibold leading-[1.04] tracking-[-0.055em] sm:text-7xl">One platform.<br /><span className="text-[var(--accent)]">Infinite worlds.</span></h1>
           <p className="muted mt-7 max-w-xl text-base leading-8 sm:text-lg">Discover independent experiences, explore new worlds, and follow the creators shaping what comes next. PROJECT NEXUS is building the foundation for a community-driven gaming universe.</p>
           <div className="mt-9 flex flex-wrap gap-3">
-            <a href="#discover" className="rounded-full bg-[var(--accent)] px-6 py-3 text-sm font-bold text-[#0a1007] transition hover:bg-[var(--accent-strong)]">Explore the vision <span aria-hidden="true">↗</span></a>
+            <Link href="/discover" className="rounded-full bg-[var(--accent)] px-6 py-3 text-sm font-bold text-[#0a1007] transition hover:bg-[var(--accent-strong)]">Explore experiences <span aria-hidden="true">↗</span></Link>
             <a href="https://github.com/irsyadsnp/PROJECT-NEXUS" className="rounded-full border border-white/15 px-6 py-3 text-sm font-semibold transition hover:border-white/40">View development</a>
           </div>
           <p className="muted mt-8 text-xs">The platform is under active development. No public games are available yet.</p>
