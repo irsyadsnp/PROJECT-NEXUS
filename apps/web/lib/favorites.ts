@@ -6,7 +6,17 @@ const FAVORITES_KEY = "nexus:favorites:v1";
 const FAVORITES_EVENT = "nexus:favorites:changed";
 const EMPTY_FAVORITES: readonly string[] = [];
 
-let favoriteIds: readonly string[] = EMPTY_FAVORITES;
+type FavoritesSnapshot = {
+  ids: readonly string[];
+  ready: boolean;
+};
+
+const SERVER_SNAPSHOT: FavoritesSnapshot = {
+  ids: EMPTY_FAVORITES,
+  ready: false,
+};
+
+let snapshot: FavoritesSnapshot = SERVER_SNAPSHOT;
 let hasReadStorage = false;
 
 function readStorage(): readonly string[] {
@@ -24,16 +34,16 @@ function readStorage(): readonly string[] {
   }
 }
 
-function getSnapshot(): readonly string[] {
+function getSnapshot(): FavoritesSnapshot {
   if (!hasReadStorage && typeof window !== "undefined") {
-    favoriteIds = readStorage();
+    snapshot = { ids: readStorage(), ready: true };
     hasReadStorage = true;
   }
-  return favoriteIds;
+  return snapshot;
 }
 
-function getServerSnapshot(): readonly string[] {
-  return EMPTY_FAVORITES;
+function getServerSnapshot(): FavoritesSnapshot {
+  return SERVER_SNAPSHOT;
 }
 
 function subscribe(listener: () => void): () => void {
@@ -42,7 +52,8 @@ function subscribe(listener: () => void): () => void {
   const onLocalChange = () => listener();
   const onStorageChange = (event: StorageEvent) => {
     if (event.key !== FAVORITES_KEY && event.key !== null) return;
-    favoriteIds = readStorage();
+    snapshot = { ids: readStorage(), ready: true };
+    hasReadStorage = true;
     listener();
   };
 
@@ -56,7 +67,7 @@ function subscribe(listener: () => void): () => void {
 }
 
 export function useFavorites() {
-  const favoriteIds = useSyncExternalStore(
+  const current = useSyncExternalStore(
     subscribe,
     getSnapshot,
     getServerSnapshot,
@@ -65,12 +76,12 @@ export function useFavorites() {
   const toggleFavorite = useCallback((gameId: string) => {
     if (typeof window === "undefined") return;
 
-    const current = getSnapshot();
-    const next = current.includes(gameId)
-      ? current.filter((id) => id !== gameId)
-      : [...current, gameId];
+    const ids = getSnapshot().ids;
+    const next = ids.includes(gameId)
+      ? ids.filter((id) => id !== gameId)
+      : [...ids, gameId];
 
-    favoriteIds = next;
+    snapshot = { ids: next, ready: true };
     hasReadStorage = true;
 
     try {
@@ -83,9 +94,9 @@ export function useFavorites() {
   }, []);
 
   return {
-    favoriteIds,
-    ready: typeof window !== "undefined" && hasReadStorage,
-    isFavorite: (gameId: string) => favoriteIds.includes(gameId),
+    favoriteIds: current.ids,
+    ready: current.ready,
+    isFavorite: (gameId: string) => current.ids.includes(gameId),
     toggleFavorite,
   };
 }
