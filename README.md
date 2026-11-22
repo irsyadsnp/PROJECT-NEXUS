@@ -40,9 +40,11 @@ The structure is a target map; directories will become tracked as implementation
 
 ## Development status
 
-**Stage 0 — Foundation:** architecture and technical decisions.
+**Stage 0 — Foundation:** completed. Architecture, repository structure, roadmap, and ADR-001 through ADR-007 are documented.
 
-No production services or playable games are implemented yet. The roadmap defines the intended sequence; completed work will be recorded as it is verified.
+**Stage 1 — Web bootstrap:** initial Next.js App Router workspace and landing-page shell committed. Dependency installation and local validation are pending.
+
+No production authentication, database integration, creator publishing, or playable games are implemented yet.
 
 ## Principles
 
