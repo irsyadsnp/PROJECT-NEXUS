@@ -1,8 +1,12 @@
 import "dotenv/config";
 import { defineConfig } from "drizzle-kit";
 
-if (!process.env.DATABASE_URL) {
-  throw new Error("DATABASE_URL is required to run Drizzle migrations.");
+const migrationDatabaseUrl = process.env.DATABASE_URL_UNPOOLED;
+
+if (!migrationDatabaseUrl) {
+  throw new Error(
+    "DATABASE_URL_UNPOOLED is required for Drizzle migrations. Use the direct, non-pooled Neon connection string.",
+  );
 }
 
 export default defineConfig({
@@ -10,7 +14,7 @@ export default defineConfig({
   out: "./drizzle",
   dialect: "postgresql",
   dbCredentials: {
-    url: process.env.DATABASE_URL,
+    url: migrationDatabaseUrl,
   },
   strict: true,
   verbose: true,
