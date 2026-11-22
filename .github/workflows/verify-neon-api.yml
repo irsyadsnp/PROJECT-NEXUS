@@ -1,0 +1,89 @@
+name: Verify Neon API Connection
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_connection:
+        description: "Type VERIFY to test the API against the Neon database"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: neon-api-connection-check
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    name: Verify API and Neon connectivity
+    if: ${{ inputs.confirm_connection == 'VERIFY' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build API
+        run: npm run api:build
+
+      - name: Start API and verify endpoints
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          HOST: 127.0.0.1
+          PORT: 4000
+          NODE_ENV: production
+        run: |
+          set -euo pipefail
+
+          if [ -z "$DATABASE_URL" ]; then
+            echo "::error::DATABASE_URL secret is not configured."
+            exit 1
+          fi
+
+          npm run api:start > "$RUNNER_TEMP/nexus-api.log" 2>&1 &
+          API_PID=$!
+          cleanup() {
+            kill "$API_PID" 2>/dev/null || true
+          }
+          trap cleanup EXIT
+
+          for attempt in $(seq 1 30); do
+            if ! kill -0 "$API_PID" 2>/dev/null; then
+              cat "$RUNNER_TEMP/nexus-api.log"
+              echo "::error::API process exited before becoming ready."
+              exit 1
+            fi
+            if curl --silent --fail http://127.0.0.1:4000/api/v1/health > "$RUNNER_TEMP/health.json"; then
+              break
+            fi
+            sleep 2
+          done
+
+          if [ ! -s "$RUNNER_TEMP/health.json" ]; then
+            cat "$RUNNER_TEMP/nexus-api.log"
+            echo "::error::Health endpoint did not respond."
+            exit 1
+          fi
+
+          node -e 'const r=require(process.argv[1]); if(r.status!=="ok" || r.service!=="nexus-platform-api") process.exit(1)' "$RUNNER_TEMP/health.json"
+
+          if ! curl --silent --show-error --fail http://127.0.0.1:4000/api/v1/ready > "$RUNNER_TEMP/ready.json"; then
+            cat "$RUNNER_TEMP/nexus-api.log"
+            echo "::error::Readiness endpoint could not connect to Neon."
+            exit 1
+          fi
+
+          node -e 'const r=require(process.argv[1]); if(r.status!=="ready") process.exit(1)' "$RUNNER_TEMP/ready.json"
+          echo "API health check passed."
+          echo "Neon database readiness check passed."
