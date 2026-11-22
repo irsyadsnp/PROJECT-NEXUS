@@ -15,7 +15,7 @@ Roadmap phases are delivery gates, not promises of dates. Each phase must have a
 - [x] Validate installation and quality checks in GitHub Actions.
 - [x] Validate lint, typecheck, and production build in GitHub Actions.
 - [x] Commit the generated npm lockfile and switch CI to deterministic installs.
-- [ ] Build out production-ready responsive web portal.
+- [x] Build initial responsive portal navigation and interactive local Game Catalog / Discover page.
 - [ ] Implement account registration, login, and player profiles.
 - [ ] Create game catalog, search, categories, and game detail pages.
 - [ ] Add a basic compatible-build launcher.
