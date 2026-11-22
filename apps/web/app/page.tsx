@@ -69,7 +69,7 @@ export default function Home() {
               <article key={game.number} className="panel group p-6 transition hover:border-white/20 sm:p-8">
                 <div className={`mb-8 flex aspect-[16/7] items-center justify-center overflow-hidden rounded-xl border border-white/10 ${game.accent === "voxel" ? "bg-[linear-gradient(135deg,#263b35,#111a1c_65%)]" : "bg-[linear-gradient(135deg,#28264d,#151322_65%)]"}`}><span className="text-5xl font-black tracking-[-0.08em] text-white/15 transition duration-500 group-hover:scale-110 sm:text-7xl">{game.number}</span></div>
                 <div className="flex items-center justify-between gap-3"><span className="eyebrow">{game.genre}</span><span className="text-[0.6rem] tracking-[0.12em] text-[var(--muted)]">{game.status}</span></div>
-                <h3 className="mt-3 text-2xl font-semibold">{game.title}</h3>
+                <h3 className="mt-3 text-2xl font-semibold"><Link href={`/games/${game.title === "Voxel Frontier" ? "voxel-frontier" : "neon-drift"}`} className="transition hover:text-[var(--accent)]">{game.title}</Link></h3>
                 <p className="muted mt-3 max-w-lg text-sm leading-7">{game.description}</p>
               </article>
             ))}
