@@ -6,6 +6,9 @@ on:
     paths:
       - "apps/web/**"
       - "apps/api/**"
+      - "games/**"
+      - "docs/adr/**"
+      - "docs/roadmap/**"
       - "package.json"
       - "package-lock.json"
       - ".github/workflows/web-ci.yml"
@@ -14,6 +17,9 @@ on:
     paths:
       - "apps/web/**"
       - "apps/api/**"
+      - "games/**"
+      - "docs/adr/**"
+      - "docs/roadmap/**"
       - "package.json"
       - "package-lock.json"
       - ".github/workflows/web-ci.yml"
