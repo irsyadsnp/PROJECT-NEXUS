@@ -18,8 +18,8 @@ Roadmap phases are delivery gates, not promises of dates. Each phase must have a
 - [x] Build initial responsive portal navigation and interactive local Game Catalog / Discover page.
 - [x] Decide the Platform API architecture and module boundaries.
 - [x] Define the initial PostgreSQL relational model.
-- [ ] Create the dedicated Platform API foundation (Fastify, TypeScript, Drizzle, Zod).
-- [ ] Provision PostgreSQL and establish reviewed migration workflow.
+- [x] Create the dedicated Platform API foundation (Fastify, TypeScript, Drizzle, Zod).
+- [ ] Provision Neon PostgreSQL in Singapore and establish reviewed migration workflow.
 - [ ] Implement health and public catalog API endpoints.
 - [ ] Implement secure account registration, login, logout, sessions, and player profiles.
 - [x] Create initial local game catalog, discovery filters, and static game detail pages.
