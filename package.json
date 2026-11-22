@@ -1,0 +1,21 @@
+{
+  "name": "project-nexus",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A universe of games, built by everyone.",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace @nexus/web",
+    "build": "npm run build --workspace @nexus/web",
+    "start": "npm run start --workspace @nexus/web",
+    "lint": "npm run lint --workspace @nexus/web",
+    "typecheck": "npm run typecheck --workspace @nexus/web"
+  },
+  "engines": {
+    "node": ">=22.12.0",
+    "npm": ">=10.9.0"
+  }
+}
