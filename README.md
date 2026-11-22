@@ -42,10 +42,11 @@ The structure is a target map; directories will become tracked as implementation
 
 - **Foundation:** architecture, repository structure, roadmap, and ADRs are documented.
 - **Web portal:** responsive landing page, local game catalog, discovery filters, and static game detail routes are implemented.
+- **Backend design:** dedicated Fastify Platform API, PostgreSQL/Drizzle data layer, Zod validation, API versioning, and security boundaries are documented in ADR-013 and the Platform API architecture. Backend implementation and database provisioning have not started.
 - **CI:** dependency installation, lint, typecheck, and production build are validated through GitHub Actions.
 - **Deployment:** GitHub Pages static-export workflow is configured. The first deployment must complete before the public site URL is considered verified.
 
-No production authentication, database integration, creator publishing, or playable games are implemented yet. Current catalog entries are concepts, not released games.
+No production authentication, API runtime, database integration, creator publishing, or playable games are implemented yet. Current catalog entries are concepts, not released games.
 
 ## Local development
 
