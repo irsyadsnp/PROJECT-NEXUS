@@ -19,15 +19,20 @@ Roadmap phases are delivery gates, not promises of dates. Each phase must have a
 - [x] Decide the Platform API architecture and module boundaries.
 - [x] Define the initial PostgreSQL relational model.
 - [x] Create the dedicated Platform API foundation (Fastify, TypeScript, Drizzle, Zod).
-- [ ] Provision Neon PostgreSQL in Singapore and establish reviewed migration workflow.
-- [ ] Implement health and public catalog API endpoints.
+- [x] Provision Neon PostgreSQL in Singapore and establish the reviewed migration workflow.
+- [x] Implement API health and readiness endpoints; verify them with the database in GitHub Actions.
+- [ ] Implement public catalog API endpoints.
 - [ ] Implement secure account registration, login, logout, sessions, and player profiles.
 - [x] Create initial local game catalog, discovery filters, and static game detail pages.
-- [ ] Connect discovery and game detail pages to the Platform API.
-- [ ] Add a basic compatible-build launcher.
+- [ ] Add a typed catalog data boundary that can switch from local mock data to the Platform API.
+- [ ] Add browser-local favorites and a My Library page (device-local only; no account simulation).
+- [ ] Connect discovery and game detail pages to the Platform API after hosting resumes.
+- [ ] Add a basic compatible-build launcher after a real game build is available.
 - [ ] Add admin-only game listing controls.
 
-**Exit condition:** a player can sign in, discover a published game, open its detail page, and launch a first-party experience.
+**Temporary delivery strategy:** API runtime hosting and production API integration are deferred under [ADR-017](../adr/ADR-017-frontend-first-api-hosting-deferral.md). Continue frontend work with the existing local catalog. Do not represent mock data as live data or use browser storage for authentication, purchases, multiplayer, or authoritative progression.
+
+**Exit condition:** a player can sign in, discover a published game, open its detail page, and launch a first-party experience. This exit condition still requires the deferred backend and real game build.
 
 ## Stage 2 — First-party games
 - [ ] Build a small 2D platformer as the first end-to-end game.
