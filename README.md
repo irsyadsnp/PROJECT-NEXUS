@@ -41,7 +41,7 @@ The structure is a target map; directories will become tracked as implementation
 ## Development status
 
 - **Foundation:** architecture, repository structure, roadmap, and ADRs are documented.
-- **Web portal:** responsive landing page, local game catalog, discovery filters, and static game detail routes are implemented.
+- **Web portal:** responsive landing page, discovery filters, static game detail routes, and device-local My Library are implemented. Home, Discover, My Library, and game detail routes read from a shared typed catalog provider backed by prototype data (ADR-018).
 - **Frontend delivery strategy:** development is continuing frontend-first using clearly labeled local prototype data. Browser-local storage may support device-specific preferences only; it is not an account, database, or multiplayer backend. See [ADR-017](docs/adr/ADR-017-frontend-first-api-hosting-deferral.md).
 - **Backend foundation:** a Fastify/TypeScript API, Drizzle data layer, PostgreSQL schema, Neon database, and migration workflow are established. Health/readiness checks pass in GitHub Actions. API runtime hosting and production frontend integration are deferred; no public production API is currently available.
 - **CI:** dependency installation, lint, typecheck, and production build are validated through GitHub Actions.
