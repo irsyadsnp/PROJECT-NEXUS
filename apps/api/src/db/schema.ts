@@ -58,7 +58,7 @@ export const sessions = pgTable(
   },
   (table) => [
     uniqueIndex("sessions_token_hash_unique").on(table.tokenHash),
-    uniqueIndex("sessions_user_expiry_idx").on(table.userId, table.expiresAt),
+    index("sessions_user_expiry_idx").on(table.userId, table.expiresAt),
   ],
 );
 
