@@ -67,7 +67,7 @@ export default async function Home() {
           <div className="grid gap-4 md:grid-cols-2">
             {experiences.map((game, index) => (
               <article key={game.id} className="panel group p-6 transition hover:border-white/20 sm:p-8">
-                <div className={`mb-8 flex aspect-[16/7] items-center justify-center overflow-hidden rounded-xl border border-white/10 ${game.accent === "voxel" ? "bg-[linear-gradient(135deg,#263b35,#111a1c_65%)]" : "bg-[linear-gradient(135deg,#28264d,#151322_65%)]"}`}><span className="text-5xl font-black tracking-[-0.08em] text-white/15 transition duration-500 group-hover:scale-110 sm:text-7xl">{{String(index + 1).padStart(2, "0")}}</span></div>
+                <div className={`mb-8 flex aspect-[16/7] items-center justify-center overflow-hidden rounded-xl border border-white/10 ${game.accent === "voxel" ? "bg-[linear-gradient(135deg,#263b35,#111a1c_65%)]" : "bg-[linear-gradient(135deg,#28264d,#151322_65%)]"}`}><span className="text-5xl font-black tracking-[-0.08em] text-white/15 transition duration-500 group-hover:scale-110 sm:text-7xl">{String(index + 1).padStart(2, "0")}</span></div>
                 <div className="flex items-center justify-between gap-3"><span className="eyebrow">{`${game.format} ${game.genre}`.toUpperCase()}</span><span className="text-[0.6rem] tracking-[0.12em] text-[var(--muted)]">{game.stage.toUpperCase()}</span></div>
                 <h3 className="mt-3 text-2xl font-semibold"><Link href={`/games/${game.id}`} className="transition hover:text-[var(--accent)]">{game.title}</Link></h3>
                 <p className="muted mt-3 max-w-lg text-sm leading-7">{game.description}</p>
