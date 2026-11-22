@@ -11,7 +11,7 @@ Roadmap phases are delivery gates, not promises of dates. Each phase must have a
 **Exit condition:** repository architecture and technical decisions are documented and reviewed. Initial web coding guidance is in place.
 
 ## Stage 1 — Platform MVP
-- [x] Bootstrap responsive Next.js web portal shell.\n- [ ] Validate installation and quality checks locally.\n- [x] Validate lint, typecheck, and production build in GitHub Actions.\n- [ ] Commit the generated npm lockfile and switch CI to deterministic installs.\n- [ ] Build out production-ready responsive web portal.
+- [x] Bootstrap responsive Next.js web portal shell.\n- [x] Validate installation and quality checks locally (GitHub Actions).\n- [x] Validate lint, typecheck, and production build in GitHub Actions.\n- [x] Commit the generated npm lockfile and switch CI to deterministic installs.\n- [ ] Build out production-ready responsive web portal.
 - [ ] Implement account registration, login, and player profiles.
 - [ ] Create game catalog, search, categories, and game detail pages.
 - [ ] Add a basic compatible-build launcher.
