@@ -6,13 +6,7 @@ export interface AppOptions {
   database?: Database;
 }
 
-export function buildApp(options: AppOptions = {}): FastifyInstance {
-  const app = Fastify({
-    logger: process.env.NODE_ENV !== "test",
-    trustProxy: false,
-    bodyLimit: 1_048_576,
-  });
-
+export function registerRoutes(app: FastifyInstance, options: AppOptions = {}): void {
   app.get("/api/v1/health", async () => ({
     status: "ok",
     service: "nexus-platform-api",
@@ -37,6 +31,15 @@ export function buildApp(options: AppOptions = {}): FastifyInstance {
       });
     }
   });
+}
 
+export function buildApp(options: AppOptions = {}): FastifyInstance {
+  const app = Fastify({
+    logger: process.env.NODE_ENV !== "test",
+    trustProxy: false,
+    bodyLimit: 1_048_576,
+  });
+
+  registerRoutes(app, options);
   return app;
 }
