@@ -1,0 +1,32 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# JavaScript / TypeScript
+node_modules/
+.next/
+out/
+dist/
+coverage/
+.turbo/
+
+# Godot
+.godot/
+.import/
+.export/
+export.cfg
+export_presets.cfg
+
+# Logs and temporary files
+*.log
+tmp/
+temp/
