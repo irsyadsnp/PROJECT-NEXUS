@@ -35,7 +35,9 @@ Roadmap phases are delivery gates, not promises of dates. Each phase must have a
 **Exit condition:** a player can sign in, discover a published game, open its detail page, and launch a first-party experience. This exit condition still requires the deferred backend and real game build.
 
 ## Stage 2 — First-party games
-- [ ] Build a small 2D platformer as the first end-to-end game.
+- [ ] Create the Neon Drift Godot 4 project and initial 2D platformer source (in progress; ADR-019).
+- [ ] Runtime-test Neon Drift movement, collision, hazards, respawn, and level completion in Godot 4.
+- [ ] Export and validate a Web build; test launch from the NEXUS portal.
 - [ ] Build a limited 3D voxel sandbox prototype.
 - [ ] Integrate the Godot SDK with platform identity and game metadata.
 - [ ] Test web and desktop packaging separately.
