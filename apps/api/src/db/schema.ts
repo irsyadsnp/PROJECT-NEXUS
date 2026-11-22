@@ -5,6 +5,7 @@ import {
   text,
   timestamp,
   index,
+  uniqueIndex,
   uuid,
   varchar,
 } from "drizzle-orm/pg-core";
