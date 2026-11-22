@@ -18,21 +18,20 @@ window/stretch/mode="canvas_items"
 [rendering]
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-textures/default_filters/use_nearest_mipmap_filter=false
 environment/defaults/default_clear_color=Color(0.025, 0.035, 0.09, 1)
 
 [input]
 move_left={
 "deadzone": 0.2,
-"events": [Object(InputEventKey,"physical_keycode":65), Object(InputEventKey,"physical_keycode":_LEFT)]
+"events": [Object(InputEventKey,"physical_keycode":65)]
 }
 move_right={
 "deadzone": 0.2,
-"events": [Object(InputEventKey,"physical_keycode":68), Object(InputEventKey,"physical_keycode":_RIGHT)]
+"events": [Object(InputEventKey,"physical_keycode":68)]
 }
 jump={
 "deadzone": 0.2,
-"events": [Object(InputEventKey,"physical_keycode":32), Object(InputEventKey,"physical_keycode":_UP), Object(InputEventKey,"physical_keycode":87)]
+"events": [Object(InputEventKey,"physical_keycode":32), Object(InputEventKey,"physical_keycode":87)]
 }
 restart={
 "deadzone": 0.2,
