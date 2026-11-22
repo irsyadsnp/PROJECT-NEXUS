@@ -1,10 +1,11 @@
-name: Web CI
+name: Web and API CI
 
 on:
   push:
     branches: [main]
     paths:
       - "apps/web/**"
+      - "apps/api/**"
       - "package.json"
       - "package-lock.json"
       - ".github/workflows/web-ci.yml"
@@ -12,6 +13,7 @@ on:
     branches: [main]
     paths:
       - "apps/web/**"
+      - "apps/api/**"
       - "package.json"
       - "package-lock.json"
       - ".github/workflows/web-ci.yml"
@@ -21,14 +23,14 @@ permissions:
   contents: read
 
 concurrency:
-  group: web-ci-${{ github.workflow }}-${{ github.ref }}
+  group: web-api-ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   validate:
-    name: Install, lint, typecheck, build
+    name: Install, lint, typecheck, test, build
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
 
     steps:
       - name: Checkout repository
@@ -44,11 +46,17 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Lint
+      - name: Lint web
         run: npm run lint
 
-      - name: Typecheck
+      - name: Typecheck workspaces
         run: npm run typecheck
 
-      - name: Production build
+      - name: Test API
+        run: npm run api:test
+
+      - name: Build web
         run: npm run build
+
+      - name: Build API
+        run: npm run api:build
