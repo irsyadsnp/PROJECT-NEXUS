@@ -6,7 +6,13 @@ const database = env.DATABASE_URL ? createDatabase(env.DATABASE_URL) : undefined
 const app = buildApp({ database: database?.db });
 
 try {
-  await app.listen({ host: env.HOST, port: env.PORT });
+  // Vercel's Fastify runtime expects the app to listen without a loopback host.
+  // Keep the explicit local host for ordinary Node.js development.
+  if (process.env.VERCEL === "1") {
+    await app.listen({ port: env.PORT });
+  } else {
+    await app.listen({ host: env.HOST, port: env.PORT });
+  }
 } catch (error) {
   app.log.error(error);
   await database?.pool.end();
