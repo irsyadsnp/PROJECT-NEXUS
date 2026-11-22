@@ -5,7 +5,8 @@ This is the intended structure. Add directories when their first real file is in
 ```text
 PROJECT-NEXUS/
 ├── apps/
-│   ├── web/                 # Player-facing portal
+│   ├── web/                 # Static player-facing portal
+│   ├── api/                 # Modular Platform API (Fastify)
 │   └── creator-studio/      # Creator publishing interface
 ├── packages/
 │   └── shared/              # Shared types and contracts (when needed)
@@ -14,6 +15,8 @@ PROJECT-NEXUS/
 ├── games/
 │   ├── voxel-world/         # 3D reference experience
 │   └── 2d-platformer/       # 2D reference experience
+├── packages/
+│   └── contracts/           # Shared API contracts when genuinely needed
 ├── infrastructure/
 │   ├── database/
 │   ├── nakama/
